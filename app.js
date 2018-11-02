@@ -55,10 +55,6 @@ function getRandomFiles(numFiles, dir) {
 var server = http.createServer(function(req, res) {
   console.log('request was made: ' + req.url);
   res.writeHead(200, {'Content-Type': 'application/json'});
-  var myObj = {
-    name: 'Kyle',
-    age: 17
-  };
   var fileArr = getRandomFiles(5, DATA_DIR);
   res.end(fileArr.toString());
 });
