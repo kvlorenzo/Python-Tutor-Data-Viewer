@@ -1,5 +1,11 @@
-/* This is the directory where all the programs are found.
- * The directory should be relative to the file you're adding the data to the
- * database
- */
-export const DATA_DIR = '/../../../v2/data/pairs/';
+// Default server port number
+export const SERVER_PORT = 3002;
+
+// Default server port number
+export const CLIENT_PORT = 3003;
+
+// Database name
+export const DB_NAME = "pythonprograms";
+
+// Collection name
+export const COLL_NAME= "pairs";

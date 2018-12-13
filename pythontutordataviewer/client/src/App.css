@@ -17,9 +17,10 @@
   text-align: center;
 }
 
-.Keys {
-  width: 50%;
-  float:left;
+.FormArea {
+  display: block;
+  width: 100%;
+  padding-left: 5%;
 }
 .BadCode {
   float: left;
@@ -44,7 +45,8 @@
 }
 
 .Program {
-  display: block;
+  display: flex;
+  margin-top: 1px;
   white-space: pre;
 }
 

@@ -7,6 +7,15 @@ var fs = require('fs');
 var express = require('express');
 var router = express.Router();
 
+var queryDB = require('../db/QueryDB');
+
+// Middleware
+var bodyParser = require('body-parser');
+
+// variables to hold the search filters
+var numQueries = "";
+var query = "";
+
 /**
  * returns a number between 0 and the upper bound (exclusive)
  * @param {number} upperBound the exclusive upper bound of the random number
@@ -64,8 +73,10 @@ function parseJSON(fileArr) {
 
 
 /* THE MAIN CODE - Reads in 20 files and passes their info to front end  */
+router.use(bodyParser.urlencoded({extended: false}));
+router.use(bodyParser.json());
 router.get('/', function(req, res, next) {
-  console.log("File reads starting...");
+ /* console.log("File reads starting...");
   var startTime = new Date();
   var filesArr = getRandomFiles(20, __dirname + DATA_DIR);
   var goodBadCode = parseJSON(filesArr);
@@ -73,7 +84,22 @@ router.get('/', function(req, res, next) {
   console.log("File reads successful.");
   console.log("Time to parse files: " + 
     (endTime - startTime) + " milliseconds");
-  res.json(goodBadCode);
+  res.json(goodBadCode); */
+
+  queryDB.dbQuery(numQueries, query, function(result) {
+    console.log("QueryDB called");
+    res.json(result);
+  });
+
+});
+
+router.post('/', function(req, res) {
+  console.log('POST request:');
+  console.dir(req.body);
+  numQueries = req.body.data.numQueries;
+  query = req.body.data.query;
+  console.log('numQueries = ' + numQueries + ' query = ' + query);
+  res.redirect('/');
 });
 
 module.exports = router;
