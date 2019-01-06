@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
 
-const axios = require('axios');
-const url = 'http://localhost:3002/users';
-
 class Form extends Component {
   constructor(props) {
     super(props);
@@ -14,11 +11,7 @@ class Form extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const data = this.state;
-    console.log('Data to send: ' + data);
-    axios.post(url, {data})
-      .then(res => console.log('Data sent: ' + data))
-      .catch(err => console.log(err.data));
+    this.props.queryPrograms(this.state);
   };
 
   handleInputChange = (e) => {
