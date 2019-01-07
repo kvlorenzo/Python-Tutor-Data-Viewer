@@ -7,11 +7,16 @@ class Form extends Component {
       query: '',
       numQueries: ''
     };
+    this.handler = this.handler.bind(this);
+  }
+
+  handler = (e) => {
+    this.props.queryPrograms(this.state);
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.queryPrograms(this.state);
+    this.handler(e);
   };
 
   handleInputChange = (e) => {

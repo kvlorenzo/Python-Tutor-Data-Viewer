@@ -184,7 +184,6 @@ function addStyle(style) {
 }
 
 function getDiffLists(fromList, toList, handler) {
-  const diffs = [0, 0, 0];//compare(fromList, toList)
 
   let fromItems = []
   let toItems = []

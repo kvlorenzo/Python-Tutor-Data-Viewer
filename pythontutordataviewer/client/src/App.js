@@ -11,6 +11,7 @@ class App extends Component {
     super();
     this.state = {programs: []};
     this.updatePrograms = this.updatePrograms.bind(this);
+    this.queryPrograms = this.queryPrograms.bind(this);
   }
 
   updatePrograms = () => {
@@ -45,7 +46,7 @@ class App extends Component {
           <h1>Python Tutor Data Viewer</h1>
         </div>
         <div className="FormArea">
-          <Form queryForm={this.queryPrograms} />
+          <Form queryPrograms={this.queryPrograms} />
         </div>
         <ProgramList programs={this.state.programs} />
       </div>

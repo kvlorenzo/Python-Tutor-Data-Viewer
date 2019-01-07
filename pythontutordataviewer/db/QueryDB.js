@@ -24,6 +24,7 @@ var url = 'mongodb://localhost:27017/';
 exports.dbQuery = function(numQueries, query, callback) {
   // search limit on number of results to return - default = 20
   numQueries = parseInt(numQueries) || 20;
+  console.log("From query: NumQueries = " + numQueries);
 
   // connect to database
   MongoClient.connect(url, {useNewUrlParser: true}, function(err, db) {
@@ -34,6 +35,7 @@ exports.dbQuery = function(numQueries, query, callback) {
     
     // Search if we have a valid search query
     if (query && query.length > 0) {
+      console.log("Query valid");
       // retrieve data - we will be searching through the "fix" field
       dbo.collection('pairs').find(
         {fix: {$regex: query, $options: "$i"}},
@@ -47,6 +49,7 @@ exports.dbQuery = function(numQueries, query, callback) {
     }
     // if we don't have a valid query, then choose documents at random
     else {
+      console.log("Query invalid");
       dbo.collection('pairs').aggregate(
         [{$sample: {size: numQueries}},
          {$project: {_id: 0, bad: 1, fix: 1}}]
